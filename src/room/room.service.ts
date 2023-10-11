@@ -1,12 +1,11 @@
-import { Injectable } from "@nestjs/common/decorators";
-import { Server } from 'socket.io';
+import { Injectable } from '@nestjs/common/decorators';
+import { ChatGateway } from '../chat/chat.gateway';
 
 @Injectable()
 export class RoomService {
-  constructor() {}
-  public server: Server
+  constructor(private gateway: ChatGateway) {}
 
   public async ping(): Promise<void> {
-    this.server.emit('chat', 'success!')
+    this.gateway.server.emit('chat', 'success!');
   }
 }
